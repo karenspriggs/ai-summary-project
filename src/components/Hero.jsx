@@ -1,7 +1,36 @@
 import React from 'react'
 import {logo} from "../assets"
+import {useGSAP} from "@gsap/react";
+import gsap from "gsap";
+import {SplitText} from "gsap/SplitText";
 
 const Hero = () => {
+    useGSAP(() =>{
+        const headerSplit = new SplitText(".head_text", {
+            type: "words",
+        });
+
+        const descriptionSplit = new SplitText(".desc", {
+            type: "lines"
+        });
+
+        gsap.from(headerSplit.words, {
+            yPercent: 100,
+            duration: 1,
+            ease: "expo.out",
+            stagger: 0.15,
+        });
+
+        gsap.from(descriptionSplit.lines, {
+            opacity: 0,
+            yPercent: 100,
+            duration: 1.8,
+            ease: "expo.out",
+            stagger: 0.06,
+            delay: 1,
+        });
+
+    })
     return (
         <header className="w-full flex justify-center items-center flex-col">
             <nav className="flex justify-between items-center w-full mb-10 pt-3">
